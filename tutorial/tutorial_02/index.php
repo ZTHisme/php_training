@@ -10,24 +10,26 @@
 
 <body>
     <?php
-    $n = 11;
-    for ($i = 0; $i <= $n; $i++) {
-        if ($i % 2 != 0) {
-            for ($k = $n; $k >= $i; $k--) {
+    /**
+     * Create diamond shape with star
+     */
+    for ($row = 1; $row <= 11; $row++) {
+        if ($row % 2 != 0) {
+            for ($space = 10; $space >= $row; $space--) {
                 echo "&nbsp;&nbsp;";
             }
-            for ($j = 1; $j <= $i; $j++) {
+            for ($col = 1; $col <= $row; $col++) {
                 echo "* &ensp;";
             }
             echo "<br>";
         }
     }
-    for ($i = $n - 1; $i >= 1; $i--) {
-        if ($i % 2 != 0) {
-            for ($k = $n; $k >= $i; $k--) {
+    for ($row = 1; $row <= 9; $row++) {
+        if ($row % 2 != 0) {
+            for ($space = 0; $space <= $row; $space++) {
                 echo "&nbsp;&nbsp;";
             }
-            for ($j = 1; $j <= $i; $j++) {
+            for ($col = 9; $col >= $row; $col--) {
                 echo "* &ensp;";
             }
             echo "<br>";
