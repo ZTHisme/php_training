@@ -14,10 +14,10 @@ if (isset($_SESSION['uname'])) {
 } else {
     if ($_POST['uname'] == $uname && $_POST['pwd'] == $pwd) {
         $_SESSION['uname'] = $uname;
-        header("Location:home.php");
+        header("Location: home.php");
     } else {
         echo "<script>alert('username or password incorrect!')</script>";
-        header('Refresh: 1; URL = index.php');
+        header('Refresh: 1; URL = ../index.php');
     }
 }
 ?>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <form action="home.php" method="post">
+  <form action="./php/home.php" method="post">
     <fieldset>
       <legend>Login Form</legend>
       <label for="uname">Username</label>
