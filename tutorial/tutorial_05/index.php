@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial05</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial05</title>
 </head>
 
 <body>
-  <?php
+    <?php
     /**
      * The data show from text file on browser
      */
@@ -21,7 +21,7 @@
     }
     fclose($file);
     ?>
-  <?php
+    <?php
     /**
      * The data show from csv file on browser
      */
@@ -39,7 +39,7 @@
     fclose($csv_file);
     echo '</table>';
     ?>
-  <?php
+    <?php
     /**
      * The data show from xlsx file on browser
      */
@@ -64,7 +64,7 @@
         echo SimpleXLSX::parseError();
     }
     ?>
-  <?php
+    <?php
     /**
      * The data show from word file on browser
      */
