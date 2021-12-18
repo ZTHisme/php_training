@@ -14,10 +14,10 @@
      * The data show from text file on browser
      */
     echo '1) Content of text file<br>';
-    $file = fopen("sample.txt", "r");
+    $file = fopen('sample.txt', 'r');
 
     while (!feof($file)) {
-        echo fgets($file) . "<br />";
+        echo fgets($file) . '<br />';
     }
     fclose($file);
     ?>
@@ -27,12 +27,12 @@
      */
     echo '<br>2) Content of CSV file<br>';
     echo '<table border="1px" cellspacing="0" cellpadding="0">';
-    $csv_file = fopen("sample.csv", "r");
+    $csv_file = fopen('sample.csv', 'r');
     while ($read_data = fgetcsv($csv_file, 1024, ',')) {
         $column_count = count($read_data);
         echo '<tr>';
         for ($col = 0; $col < $column_count; $col++) {
-            echo "<td>" . $read_data[$col] . "</td>";
+            echo '<td>' . $read_data[$col] . '</td>';
         }
         echo '</tr>';
     }
@@ -44,21 +44,20 @@
      * The data show from xlsx file on browser
      */
     echo '<br>3) Content of excel file<br>';
-    require_once "./library/vendor/shuchkin/simplexlsx/src/SimpleXLSX.php";
+    require_once './library/vendor/shuchkin/simplexlsx/src/SimpleXLSX.php';
     if ($xlsx = SimpleXLSX::parse('sample.xlsx')) {
-        echo '<table><tbody>';
+        echo '<table>';
         $bold = 0;
-
         foreach ($xlsx->rows() as $data) {
             if ($bold == 0) {
-                echo "<tr><th>" . $data[0] . "</th><th>" . $data[1] . "</th></tr>";
+                echo '<thead><tr><th>' . $data[0] . '</th><th>' . $data[1] . '</th></tr></thead>';
             } else {
-                echo "<tr><td>" . $data[0] . "</td><td>" . $data[1] . "</td></tr>";
+                echo '<tbody><tr><td>' . $data[0] . '</td><td>' . $data[1] . '</td></tr></tbody>';
             }
             $bold++;
         }
 
-        echo "</tbody></table>";
+        echo '</table>';
     } else {
         echo SimpleXLSX::parseError();
     }
@@ -68,7 +67,7 @@
      * The data show from word file on browser
      */
     echo '<br>4) Content of doc file<br>';
-    $filename = "sample.doc";
+    $filename = 'sample.doc';
     function readWord($filename)
     {
         if (file_exists($filename)) {
