@@ -47,16 +47,15 @@
     require_once "./library/vendor/shuchkin/simplexlsx/src/SimpleXLSX.php";
     if ($xlsx = SimpleXLSX::parse('sample.xlsx')) {
         echo '<table><tbody>';
-        $i = 0;
+        $bold = 0;
 
-        foreach ($xlsx->rows() as $elt) {
-            if ($i == 0) {
-                echo "<tr><th>" . $elt[0] . "</th><th>" . $elt[1] . "</th></tr>";
+        foreach ($xlsx->rows() as $data) {
+            if ($bold == 0) {
+                echo "<tr><th>" . $data[0] . "</th><th>" . $data[1] . "</th></tr>";
             } else {
-                echo "<tr><td>" . $elt[0] . "</td><td>" . $elt[1] . "</td></tr>";
+                echo "<tr><td>" . $data[0] . "</td><td>" . $data[1] . "</td></tr>";
             }
-
-            $i++;
+            $bold++;
         }
 
         echo "</tbody></table>";
@@ -73,14 +72,14 @@
     function readWord($filename)
     {
         if (file_exists($filename)) {
-            if (($fh = fopen($filename, 'r')) !== false) {
-                $headers = fread($fh, 0xA00);
+            if (($doc_file = fopen($filename, 'r')) !== false) {
+                $headers = fread($doc_file, 0xA00);
 
                 $char = (ord($headers[0x21C]) - 1);
 
                 $textLength = ($char);
 
-                $extracted_plaintext = fread($fh, $textLength);
+                $extracted_plaintext = fread($doc_file, $textLength);
 
                 return nl2br($extracted_plaintext);
             } else {
