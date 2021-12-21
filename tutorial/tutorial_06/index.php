@@ -28,7 +28,6 @@
 
         if ($_POST['foldername'] != '') {
             $foldername  = $_POST['foldername'];
-            if (!is_dir($foldername));
             if (!file_exists($foldername)) {
                 mkdir($foldername, 0700, true);
             }
