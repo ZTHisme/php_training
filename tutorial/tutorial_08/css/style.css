@@ -1,0 +1,56 @@
+.fs-border {
+  margin-bottom: 30px;
+  padding: 20px;
+  text-align: center;
+  border-color: #0d6ac2;
+  border-radius: 5px;
+}
+
+.sub-ttl {
+  color: #0084ff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-deco {
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid #b8b8b8;
+  outline: 0;
+  border-radius: 5px;
+  caret-color: #b8b8b8;
+}
+
+.btn {
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  border: 1px solid #0084ff;
+  background-color: #0084ff;
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-sec {
+  border: 1px solid #b42c1a;
+  background-color: #b42c1a;
+}
+
+.lb-txt {
+  font-size: 11px;
+}
+
+.form-deco {
+  padding-right: 50px;
+  padding-bottom: 30px;
+}
+
+.table-res {
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid #b8b8b8;
+  outline: 0;
+  border-radius: 5px;
+  caret-color: #b8b8b8;
+}
