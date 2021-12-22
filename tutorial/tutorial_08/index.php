@@ -14,9 +14,9 @@
         <fieldset class="fs-border">
             <legend class="sub-ttl">Student Marks Information</legend>
             <label class="lb-txt">Name</label>
-            <input type="text" name="name" class="input-deco"><br>
+            <input type="text" name="name" class="input-deco" required><br>
             <label class="lb-txt">Score</label>
-            <input type="number" name="score" class="input-deco"><br>
+            <input type="number" name="score" class="input-deco" required><br>
             <input type="submit" name="submit" value="Submit" class="btn">
         </fieldset>
     </form>
