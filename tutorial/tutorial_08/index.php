@@ -25,6 +25,7 @@
             <?php include "./php/read.php"; ?>
         </tbody>
     </table>
+    <a href='./php/chart.php' class='btn right-side'>Show Chart &#8594;</a>
 </body>
 
 </html>
