@@ -8,7 +8,7 @@ $name = '';
 $score = '';
 
 
-$sql = "SELECT * FROM `demo_table` ";
+$sql = "SELECT * FROM `stu_table` ";
 $result = mysqli_query($conn, $sql);
 
 

@@ -15,6 +15,12 @@
             <legend class="sub-ttl">Student Marks Information</legend>
             <label class="lb-txt">Name</label>
             <input type="text" name="name" class="input-deco" required><br>
+            <label class="lb-txt">Email</label>
+            <input type="text" name="email" class="input-deco" required><br>
+            <label class="lb-txt">Address</label>
+            <input type="text" name="address" class="input-deco" required><br>
+            <label class="lb-txt">Phone</label>
+            <input type="number" name="phnum" class="input-deco" required><br>
             <label class="lb-txt">Score</label>
             <input type="number" name="score" class="input-deco" required><br>
             <input type="submit" name="submit" value="Submit" class="btn">
