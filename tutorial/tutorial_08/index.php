@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <p><a href="../php/logout.php" class="btn">&#8592 Logout</a></p>
     <form action="./php/create.php" method="POST">
         <fieldset class="fs-border">
             <legend class="sub-ttl">Student Marks Information</legend>
@@ -32,6 +33,7 @@
         </tbody>
     </table>
     <a href='./php/chart.php' class='btn right-side'>Show Chart &#8594;</a>
+
 </body>
 
 </html>

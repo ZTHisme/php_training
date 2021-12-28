@@ -39,7 +39,7 @@
 
 .lb-txt {
   font-size: 11px;
-  padding-right: 10px;
+  display: block;
 }
 
 .form-deco {
@@ -67,4 +67,9 @@
   margin-top: 10px;
   border: 1px solid #555652;
   background: #220;
+}
+.link-txt{
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 90px;
 }
