@@ -14,6 +14,9 @@ require '../library/vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require '../library/vendor/phpmailer/phpmailer/src/SMTP.php';
 
 if (isset($_POST['email'])) {
+    $sql = mysqli_query($conn, "SELECT email FROM  users WHERE email = '".$_POST['email']."'");
+
+    if (mysqli_num_rows($sql)) {
         $emailTo = $_POST['email'];
         $code = uniqid(true);
         //Inset data into database
@@ -47,7 +50,10 @@ if (isset($_POST['email'])) {
         } catch (Exception $e) {
             echo "Mailer Error: {$mail->ErrorInfo}";
         }
+    } else {
+        echo "<script>alert('Invalid Email');</script>";
     }
+}
 
 ?>
 <!DOCTYPE html>
