@@ -20,6 +20,17 @@ require_once("config.php");
                 if (isset($_GET['code'])) {
                     $code = $_GET['code'];
                 }
+                $fetchresultok = mysqli_query($conn, "SELECT email FROM resetpwd WHERE code='$code'");
+                if ($result = mysqli_fetch_array($fetchresultok)) {
+                    $email = $result['email'];
+                }
+                if (isset($email) != '') {
+                    $emailtok = $email;
+                } else {
+                    $error[] = 'Link has been expired or used.';
+                    header('Refresh: 4; URL = request.php');
+                    $hide = 1;
+                }
                 //Form for submit 
                 if (isset($_POST['sub_set'])) {
                     extract($_POST);
@@ -32,22 +43,13 @@ require_once("config.php");
                     if ($password != $passwordConfirm) {
                         $error[] = 'Passwords does not match.';
                     }
-                    $fetchresultok = mysqli_query($conn, "SELECT email FROM resetpwd WHERE code='$code'");
-                    if ($result = mysqli_fetch_array($fetchresultok)) {
-                        $email = $result['email'];
-                    }
-                    if (isset($email) != '') {
-                        $emailtok = $email;
-                    } else {
-                        $error[] = 'Link has been expired or something missing ';
-                        $hide = 1;
-                    }
+
                     //If there is no error the password will update
                     if (!isset($error)) {
                         $password = md5($password);
                         $updatepass = mysqli_query($conn, "UPDATE users SET password='$password' WHERE email='$emailtok'");
                         if ($updatepass) {
-                            $success = "<div><span style='font-size:80px;'>&#9989;</span><br> Your password has been updated successfully.. <br> <a href='login.php' style='color:#000;'>Login here... </a> </div>";
+                            $success = "<div style='width:400px'><span style='font-size:80px;'>&#9989;</span><br> Your password has been updated successfully.. <br> <a href='login.php' style='color=#00008B;'>&#8594; Login here &#8592;</a> </div>";
 
                             $resultdel = mysqli_query($conn, "DELETE FROM resetpwd WHERE code='$code'");
                             $hide = 1;
@@ -61,7 +63,7 @@ require_once("config.php");
                             <?php
                             if (isset($error)) {
                                 foreach ($error as $error) {
-                                    echo '<p style="color:#FF0000;">'.$error.'</div><br>';
+                                    echo '<div style="width:300px"><p style="color:#FF0040;">' . $error . '</p></div><br>';
                                 }
                             }
                             if (isset($success)) {
