@@ -59,8 +59,7 @@ class TaskController extends Controller
 
         if ($task) {
             return redirect()
-                ->route('tasks.index')
-                ->with('success', 'Task created successfully.');
+                ->route('tasks.index');
         }
     }
 
@@ -75,8 +74,7 @@ class TaskController extends Controller
 
         if ($result) {
             return redirect()
-                ->route('tasks.index')
-                ->with('success', 'Task deleted successfully.');
+                ->route('tasks.index');
         }
     }
 }
