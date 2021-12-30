@@ -2,71 +2,87 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
+use App\Contracts\Services\Auth\AuthServiceInterface;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
+     /**
+     * auth interface
      */
-    protected $redirectTo = '/';
+    private $authInterface;
 
-    /**
-     * Create a new authentication controller instance.
-     *
+     /**
+     * Create a new controller instance.
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthServiceInterface $authServiceInterface)
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->authInterface = $authServiceInterface;
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * Display a listing of the resource.
+     * @return Response
      */
-    protected function validator(array $data)
+    public function index()
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        return view('auth.login');
     }
 
     /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
+     * Display a listing of the resource.
+     * @return Response
      */
-    protected function create(array $data)
+    public function registration()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        return view('auth.registration');
+    }
+
+   /**
+     * Save the data into database
+     * @param Request $request
+     * @return Response
+     */
+    public function postLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
         ]);
+        $credentials = $this->authInterface->postAuth($request);
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('tasks');
+        }
+        return redirect()->back()->with('error','Oppes! You have entered invalid credentials');
+    }
+
+    /**
+     * Save the data into database
+     * @param Request $request
+     * @return Response
+     */
+    public function postRegistration(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+    }
+
+
+    /**
+     * Log out of Auth
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return Redirect('login');
     }
 }
