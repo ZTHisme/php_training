@@ -7,15 +7,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-     /**
+    /**
      * auth interface
      */
     private $authInterface;
 
-     /**
+    /**
      * Create a new controller instance.
      * @return void
      */
@@ -42,7 +44,7 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
-   /**
+    /**
      * Save the data into database
      * @param Request $request
      * @return Response
@@ -57,7 +59,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->intended('tasks');
         }
-        return redirect()->back()->with('error','Oppes! You have entered invalid credentials');
+        return redirect()->back()->with('error', 'Oppes! You have entered invalid credentials');
     }
 
     /**
@@ -72,8 +74,23 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
+        $data = $request->all();
+        $check = $this->create($data);
+        return redirect("login")->withSuccess('Great! You have Successfully logged in');
     }
 
+    /**
+     * Create user
+     * @return response()
+     */
+    public function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
+    }
 
     /**
      * Log out of Auth
