@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
           <label for="address" class="form-label">Address</label>
-          <textarea class="form-control" value="{{ old('address') }}" name="address"></textarea>
+          <textarea class="form-control" name="address">{{ old('address') }}</textarea>
           @if ($errors->has('address'))
           <span class="text-danger">{{ $errors->first('address') }}</span>
           @endif
