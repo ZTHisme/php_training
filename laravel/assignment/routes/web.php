@@ -16,7 +16,7 @@ use App\Http\Controllers\Student\StudentController;
 
 // Redirect to student list
 Route::get('/', function () {
-    return redirect()->route('students.index');
+    return redirect()->route('students.create');
 });
 
 // Students list resource route
