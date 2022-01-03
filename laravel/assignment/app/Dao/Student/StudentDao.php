@@ -73,3 +73,4 @@ class StudentDao implements StudentDaoInterface
         return $student->delete();
     }
 }
+?>
