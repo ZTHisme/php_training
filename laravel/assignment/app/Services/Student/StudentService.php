@@ -57,7 +57,7 @@ class StudentService implements StudentServiceInterface
     /**
      * To update student
      * @param Request $request request with inputs
-     * @param App\Models\Student $student
+     * @param Student $student
      * @return Object saved student
      */
     public function updateStudent(Request $request, Student $student)
@@ -67,12 +67,12 @@ class StudentService implements StudentServiceInterface
 
     /**
      * To delete student
-     * @param App\Models\Student $student
+     * @param Student $student
      * @return Object saved student
      */
     public function deleteStudent(Student $student)
     {
-        $this->studentDao->deleteStudent($student);
+        return $this->studentDao->deleteStudent($student);
     }
 }
 ?>
