@@ -22,6 +22,7 @@ class TaskController extends Controller
      */
     public function __construct(TaskServiceInterface $taskServiceInterface)
     {
+        $this->middleware('auth');
         $this->taskInterface = $taskServiceInterface;
     }
 
@@ -32,12 +33,9 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = $this->taskInterface->getTaskList();
-        if (Auth::check()) {
             return view('tasks', [
                 'tasks' => $tasks
             ]);
-        }
-        return redirect('login');
     }
 
     /**
