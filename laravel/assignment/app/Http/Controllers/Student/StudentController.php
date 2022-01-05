@@ -6,7 +6,9 @@ use App\Contracts\Services\Student\StudentServiceInterface;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Imports\StudentsImport;
+use App\Exports\StudentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -124,5 +126,42 @@ class StudentController extends Controller
 
         return redirect()->route('students.index');
     }
+
+    /**
+     * To download csv file
+     * @return File Download CSV file
+     */
+    public function downloadCSV()
+    {
+        return Excel::download(new StudentsExport, 'form.xlsx');
+    }
+
+    /**
+     * Show the form of upload file
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUpload()
+    {
+        return view('student.upload');
+    }
+
+    /**
+     * Import the csv file
+     * 
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function submitUpload(Request $request)
+    {
+        $request->validate([
+            'file' => 'required',
+        ]);
+
+        if ($this->studentInterface->uploadCSV()) {
+            return redirect()
+                ->route('students.index')
+                ->with('success', 'Successfully Imported CSV File.');
+        }
+    }
 }
-?>

@@ -74,5 +74,13 @@ class StudentService implements StudentServiceInterface
     {
         return $this->studentDao->deleteStudent($student);
     }
+
+     /**
+     * To upload csv file
+     * @return File Upload CSV file
+     */
+    public function uploadCSV()
+    {
+        return $this->studentDao->uploadCSV();
+    }
 }
-?>

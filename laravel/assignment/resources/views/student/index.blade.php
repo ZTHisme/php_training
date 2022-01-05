@@ -7,7 +7,20 @@
     <div class="panel-heading">
       Current Students
     </div>
-
+    <div class="d-flex my-2">
+      <a href="{{ route('students.upload') }}" class="btn btn-success">Import Data</a>
+      <a href="{{ route('students.download') }}" class="btn btn-primary ml-4">Export Data</a>
+    </div>
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}
+    </div>
+    @endif
+    @if(session()->has('errors'))
+    <div class="alert alert-danger">
+      {{ session()->get('errors') }}
+    </div>
+    @endif
     <div class="panel-body">
       <table class="table table-striped task-table">
         <thead>

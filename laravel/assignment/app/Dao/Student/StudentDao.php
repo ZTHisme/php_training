@@ -6,6 +6,8 @@ use App\Contracts\Dao\Student\StudentDaoInterface;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Major;
+use App\Imports\StudentsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Data Access Object for Student
@@ -72,5 +74,13 @@ class StudentDao implements StudentDaoInterface
     {
         return $student->delete();
     }
+
+    /**
+     * To upload csv file
+     * @return File upload csv
+     */
+    public function uploadCSV()
+    {
+        return Excel::import(new StudentsImport, request()->file('file'));
+    }
 }
-?>
