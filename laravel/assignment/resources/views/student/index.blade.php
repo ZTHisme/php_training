@@ -9,7 +9,7 @@
             <div class="card-body">
                 <form action="{{ route('students.index') }}" method="GET">
                     <div class="input-group my-5">
-                        <input type="name" class="form-control mr-4" placeholder="Name" name="name">
+                        <input type="text" class="form-control mr-4" placeholder="Name" name="name">
                         <input type="date" class="form-control mr-4" name="start_date">
                         <input type="date" class="form-control" name="end_date">
                         <button class="btn btn-primary" type="submit">Search</button>
