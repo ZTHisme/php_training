@@ -30,9 +30,9 @@ class StudentService implements StudentServiceInterface
      * To get student lists
      * @return $array of students
      */
-    public function getStudents()
+    public function getStudents(Request $request)
     {
-        return $this->studentDao->getStudents();
+        return $this->studentDao->getStudents($request);
     }
 
     /**

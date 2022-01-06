@@ -15,7 +15,7 @@ interface StudentDaoInterface
      * To get student lists
      * @return $array of students
      */
-    public function getStudents();
+    public function getStudents(Request $request);
 
     /**
      * To get major lists
