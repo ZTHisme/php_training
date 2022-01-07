@@ -19,25 +19,9 @@ class StudentDao implements StudentDaoInterface
      * To get student lists
      * @return $array of students
      */
-    public function getStudents(Request $request)
-    {
-        $name = $request->name;
-        $start_date = $request->start_date;
-        $end_date = $request->end_date;
-
-        $students = DB::table('students')
-            ->join('majors', 'students.major_id', '=', 'majors.id')
-            ->select('students.*', 'majors.name as major');
-        if ($name) {
-            $students->where('students.name', 'LIKE', '%' . $name . '%');
-        }
-        if ($start_date) {
-            $students->whereDate('students.created_at', '>=', $start_date);
-        }
-        if ($end_date) {
-            $students->whereDate('students.created_at', '<=', $end_date);
-        }
-        return $students->get();
+    public function getStudents()
+    {   
+        return Student::with('major')->orderBy('created_at', 'asc')->get();
     }
 
     /**
@@ -99,5 +83,31 @@ class StudentDao implements StudentDaoInterface
     public function uploadCSV()
     {
         return Excel::import(new StudentsImport, request()->file('file'));
+    }
+
+    /**
+     * To search student lists
+     * @return $array of students
+     */
+    public function searchStudent(Request $request)
+    {
+        $name = $request->name;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+
+        $students = DB::table('students')
+            ->join('majors', 'students.major_id', '=', 'majors.id')
+            ->whereNull('students.deleted_at')
+            ->select('students.*', 'majors.name as major');
+        if ($name) {
+            $students->where('students.name', 'LIKE', '%' . $name . '%');
+        }
+        if ($start_date) {
+            $students->whereDate('students.created_at', '>=', $start_date);
+        }
+        if ($end_date) {
+            $students->whereDate('students.created_at', '<=', $end_date);
+        }
+        return $students->get()->except('students.deleted_at');
     }
 }

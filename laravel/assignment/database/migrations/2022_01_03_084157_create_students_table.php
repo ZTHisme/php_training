@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->string('address');
             $table->foreignId('major_id')->references('id')->on('majors');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

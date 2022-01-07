@@ -15,7 +15,7 @@ interface StudentDaoInterface
      * To get student lists
      * @return $array of students
      */
-    public function getStudents(Request $request);
+    public function getStudents();
 
     /**
      * To get major lists
@@ -50,6 +50,10 @@ interface StudentDaoInterface
      * @return File upload csv
      */
     public function uploadCSV();
-}
 
-?>
+    /**
+     * To search student lists
+     * @return $array of students
+     */
+    public function searchStudent(Request $request);
+}

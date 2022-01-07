@@ -30,9 +30,9 @@ class StudentService implements StudentServiceInterface
      * To get student lists
      * @return $array of students
      */
-    public function getStudents(Request $request)
+    public function getStudents()
     {
-        return $this->studentDao->getStudents($request);
+        return $this->studentDao->getStudents();
     }
 
     /**
@@ -75,12 +75,21 @@ class StudentService implements StudentServiceInterface
         return $this->studentDao->deleteStudent($student);
     }
 
-     /**
+    /**
      * To upload csv file
      * @return File Upload CSV file
      */
     public function uploadCSV()
     {
         return $this->studentDao->uploadCSV();
+    }
+
+    /**
+     * To search student lists
+     * @return $array of students
+     */
+    public function searchStudent(Request $request)
+    {
+        return $this->studentDao->searchStudent($request);
     }
 }

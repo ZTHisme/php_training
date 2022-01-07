@@ -10,8 +10,8 @@
                 <form action="{{ route('students.index') }}" method="GET">
                     <div class="input-group my-5">
                         <input type="text" class="form-control mr-4" placeholder="Name" name="name">
-                        <input type="date" class="form-control mr-4" name="start_date">
-                        <input type="date" class="form-control" name="end_date">
+                        <input type="date" class="form-control mr-4" placeholder="Start Date" name="start_date">
+                        <input type="date" class="form-control" placeholder="End Date" name="end_date">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
                 </form>

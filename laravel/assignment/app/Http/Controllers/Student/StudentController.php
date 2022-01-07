@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\StudentsImport;
 use App\Exports\StudentsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -34,8 +35,8 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->studentInterface->getStudents($request);
-
+        $students = $this->studentInterface->getStudents(); 
+        $students = $this->studentInterface->searchStudent($request);
         return view('student.index', compact('students'));
     }
 
