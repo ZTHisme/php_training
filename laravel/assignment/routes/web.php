@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Student\StudentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,12 @@ Route::resource('students', StudentController::class)->except('show');
 Route::get('students/download', [StudentController::class, 'downloadCSV'])->name('students.download');
 Route::get('students/upload', [StudentController::class, 'showUpload'])->name('students.upload');
 Route::post('students/submit', [StudentController::class, 'submitUpload'])->name('students.submit');
+
+Route::resource('resource', 'App\Http\Controllers\API\StudentAPIController');
+Route::get('/shows', function(){
+    return view('student_api.shows');
+});
+
+Route::get('/update/{id}', function(){
+    return view('student_api.update');
+});

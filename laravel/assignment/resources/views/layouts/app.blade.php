@@ -11,7 +11,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,8 +22,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link" href="api/create">
+                Create Ajax Student
+              </a>
               <a class="nav-link {{ request()->routeIs('students.create') ? 'd-lg-none' : 'active' }}" href="{{ route('students.create') }}">
-                Create Student
+                Create Blade Student
               </a>
             </li>
           </ul>

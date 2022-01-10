@@ -68,6 +68,8 @@
             </table>
         </div>
     </div>
+    @else
+    <p class="text-secondary text-center p-3 mb-2 bg-info">No student found</p>
     @endif
 </div>
 @endsection
