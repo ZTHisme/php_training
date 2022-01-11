@@ -20,7 +20,7 @@ class StudentDao implements StudentDaoInterface
      * @return $array of students
      */
     public function getStudents()
-    {   
+    {
         return Student::with('major')->orderBy('created_at', 'asc')->get();
     }
 
@@ -109,5 +109,17 @@ class StudentDao implements StudentDaoInterface
             $students->whereDate('students.created_at', '<=', $end_date);
         }
         return $students->get()->except('students.deleted_at');
+    }
+
+    /**
+     * Send email with student form
+     */
+    public function sendEmailForm()
+    {
+        $students = DB::table('students')
+            ->join('majors', 'students.major_id', '=', 'majors.id')
+            ->whereNull('students.deleted_at')
+            ->select('students.*', 'majors.name as major');
+        return $students->get();
     }
 }

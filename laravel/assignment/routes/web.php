@@ -34,3 +34,5 @@ Route::get('/shows', function(){
 Route::get('/update/{id}', function(){
     return view('student_api.update');
 });
+Route::get('/mail', [StudentController::class, 'showEmailForm'])->name('showEmailForm');
+Route::post('/mail', [StudentController::class, 'sendEmailForm'])->name('sendEmailForm');

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentsImport;
 use App\Exports\StudentsExport;
+use App\Mail\SendMail;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
@@ -67,13 +68,11 @@ class StudentController extends Controller
             'address' => 'required',
             'major' => 'required'
         ]);
-        $student = $this->studentInterface->saveStudent($request);
-
-        if ($student) {
+        $this->studentInterface->saveStudent($request);
+        $this->studentInterface->sendEmail();
             return redirect()
                 ->route('students.index')
-                ->with('success', 'Student created successfully.');
-        }
+                ->with('success', 'Student created and send email successfully.');
     }
 
     /**
@@ -165,5 +164,27 @@ class StudentController extends Controller
                 ->route('students.index')
                 ->with('success', 'Successfully Imported CSV File.');
         }
+    }
+
+    /**
+     * Show the email input form
+     * @return \Illuminate\Http\Response
+     */
+    public function showEmailForm()
+    {
+        return view('student.emailform');
+    }
+
+    /**
+     * Send email to student
+     * @param \Illuminate\Http\Request $request 
+     * @return \Illuminate\Http\Response
+     */
+    public function sendEmailForm(Request $request){
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+        $this->studentInterface->sendEmailForm($request);
+            return redirect()->route('students.index')->with('success', 'Email is successfully sent.');
     }
 }

@@ -55,4 +55,14 @@ interface StudentServiceInterface
      * @return $array of students
      */
     public function searchStudent(Request $request);
+
+    /**
+     * To send email to created student
+     */
+    public function sendEmail();
+
+    /**
+     * Send email with student form
+     */
+    public function sendEmailForm();
 }

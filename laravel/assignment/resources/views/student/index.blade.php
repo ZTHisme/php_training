@@ -20,6 +20,7 @@
         <div class="d-flex my-2">
             <a href="{{ route('students.upload') }}" class="btn btn-success">Import Data</a>
             <a href="{{ route('students.download') }}" class="btn btn-primary ml-4">Export Data</a>
+            <a href="{{ route('showEmailForm') }}" class="btn btn-info ml-4">Send Email</a>
         </div>
         @if(session()->has('success'))
         <div class="alert alert-success">

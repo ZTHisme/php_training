@@ -56,4 +56,9 @@ interface StudentDaoInterface
      * @return $array of students
      */
     public function searchStudent(Request $request);
+
+     /**
+     * Send email with student form
+     */
+    public function sendEmailForm();
 }
