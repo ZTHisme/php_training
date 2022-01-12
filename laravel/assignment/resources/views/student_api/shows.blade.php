@@ -5,6 +5,11 @@
     <div class="card-header">
       Current Ajax Students
     </div>
+    @if(Session::has('success'))
+    <div class="alert alert-success" align="center" id="success">
+      <strong>{{Session::get('success')}}</strong>
+    </div>
+    @endif
 
     <div class="card-body">
       <table class="table table-striped task-table">
@@ -69,14 +74,12 @@
     $(document).on('click', '#delete-post', function(e) {
       e.preventDefault();
       var id = $(this).data("id");
-      var _token = $("input[name_token]").val();
       var confirmation = confirm("are you sure?");
       if (confirmation) {
         $.ajax({
           url: 'http://localhost:8000/api/delete/' + id,
           type: "DELETE",
           cache: false,
-          data: {},
           success: function(response) {
             $('#sid' + id).remove();
             location.reload();

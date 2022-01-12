@@ -78,14 +78,11 @@
           'address': $("#address").val()
         },
         success: function(data) {
-          console.log(data);
+          location.reload();
+          location.href = 'http://localhost:8000/shows';
+
         },
       });
-      var name = $("#name").val();
-      var email = $("#email").val();
-      var major = $("#major").val();
-      var phone = $("#phone").val();
-      var address = $("#address").val();
     });
   });
 </script>

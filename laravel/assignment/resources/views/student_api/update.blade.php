@@ -58,9 +58,9 @@
                 var email = $("#email").val(data[0].email);
                 var phone = $("#phone").val(data[0].phone);
                 var address = $("#address").val(data[0].address);
-                data[1].forEach(students=>{
+                var major = data[1].forEach(students=>{
                     $("select").append(`
-                    <option value="${students.id}"> ${students.name }</option>`);
+                    <option value="${students.id}"> ${students.name}</option>`);
                     });
                     $(`select option[value="${data[0].major_id}"]`).attr("selected", "selected");
                 console.log(data);
@@ -73,7 +73,7 @@
                         data: {
                         'name':$("#name").val(),
                         'email':$("#email").val(),
-                        'major_id':2,
+                        'major_id':$("#major").val(),
                         'phone':$("#phone").val(),
                         'address':$("#address").val()
                         },
@@ -82,12 +82,6 @@
                         location.href='http://localhost:8000/shows';
                         }
                     });
-                        var name =$("#name").val();
-                        var email = $("#email").val();
-                        var major = $("#major").val();
-                        var phone =$("#phone").val();
-                        var address = $("#address").val();
-
                 });
     });
 </script>

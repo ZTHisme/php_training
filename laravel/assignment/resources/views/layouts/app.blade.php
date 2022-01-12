@@ -28,9 +28,6 @@
               <a class="nav-link {{ request()->routeIs('students.create') ? 'd-lg-none' : 'active' }}" href="{{ route('students.create') }}">
                 Create Blade Student
               </a>
-              <a class="nav-link {{ request()->routeIs('showEmailForm') ? 'd-lg-none' : 'active' }}" href="{{ route('showEmailForm') }}">
-                Send Email
-              </a>
             </li>
           </ul>
         </div>

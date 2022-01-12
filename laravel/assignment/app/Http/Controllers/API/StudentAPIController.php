@@ -63,11 +63,8 @@ class StudentAPIController extends Controller
             'address' => 'required',
             'major' => 'required'
         ]);
-        $student = $this->studentInterface->saveStudent($request);
-        return response()->json([
-            'status' => 200,
-            'message' => 'Student Added Successfully.'
-        ]);
+        $this->studentInterface->saveStudent($request);
+        return response()->view('student_api.shows');
     }
 
 
